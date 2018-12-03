@@ -73,7 +73,7 @@ spec:
         lifecycle:
           preStop:
             exec:
-              command: 
+              command:
               - /bin/sh
               - -c
               - nodetool drain
@@ -110,7 +110,7 @@ spec:
       name: cassandra-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: rook-ceph-block
+      storageClassName: rook-block
       resources:
         requests:
           storage: 1Gi
