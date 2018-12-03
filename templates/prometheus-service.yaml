@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:  
+  name: prometheus-svc-nodeport-{{ template "cassandrademo.fullname" . }}
+spec:
+  type: NodePort
+  ports:  
+  - name: nodeport-{{ template "cassandrademo.fullname" . }}
+    port: 9090
+    targetPort: 9090
+    nodePort: {{ .Values.externalservice.nodeport }}
+    protocol: TCP
+  selector:    
+#    app: prometheus
+    prometheus: prometheus-svm-{{ template "cassandrademo.fullname" . }}

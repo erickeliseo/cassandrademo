@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-svm-{{ template "cassandrademo.fullname" . }}
+  namespace: default
+  labels:
+    team: {{ template "cassandrademo.fullname" . }}
+spec:
+  namespaceSelector:
+    matchNames:
+      - default
+  selector:
+#   statefulset.kubernetes.io/pod-name: cassandrademo-qa-0
+    matchLabels:
+        app: {{ template "cassandrademo.fullname" . }}
+#       statefulset.kubernetes.io/pod-name: cassandrademo-qa-0
+  endpoints:
+  - port: mon
+  - path: /
+    interval: 5s
+    targetPort: 7777
