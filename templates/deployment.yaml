@@ -61,11 +61,11 @@ spec:
           name: cql
         resources:
           limits:
-            cpu: "0.1"
-            memory: 500Mi
+            cpu: "1"
+            memory: 2048Mi
           requests:
-           cpu: "0.1"
-           memory: 500Mi
+           cpu: "1"
+           memory: 2048Mi
         securityContext:
           capabilities:
             add:
@@ -79,11 +79,11 @@ spec:
               - nodetool drain
         env:
           - name: MAX_HEAP_SIZE
-            value: 256M
+            value: 1024M
           - name: CASSANDRA_DATA
             value: /cassandra_data
           - name: HEAP_NEWSIZE
-            value: 50M
+            value: 100M
           - name: CASSANDRA_SEEDS
             value: "{{ template "cassandrademo.fullname" . }}-0.{{ template "cassandrademo.fullname" . }}-headless.default.svc.cluster.local"
           - name: CASSANDRA_CLUSTER_NAME
